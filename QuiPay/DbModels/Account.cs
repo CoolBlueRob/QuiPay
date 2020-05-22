@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QuiPay.DbModels
 {
-    public enum State
+    public enum AccountState
     {
         Pending, Active, Suspicious, Suspended
     };
@@ -14,10 +14,14 @@ namespace QuiPay.DbModels
         [Key]
         public int ID { get; set; }
 
-        public State State { get; set; }
+        public AccountState AccountState { get; set; }
+
+        public Currency Balance { get; set; }
 
         public int MemberID { get; set; }
 
         public int CurrencyID { get; set; }
+
+        public DateTime WhenCreated { get; set; }
     }
 }

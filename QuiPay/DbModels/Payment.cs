@@ -10,7 +10,7 @@ namespace QuiPay.DbModels
 {
     public enum PaymentState
     {
-        Waiting, Accepted, Declined
+        Offered, Accepted, Declined
     }
 
     public class Payment
@@ -18,7 +18,7 @@ namespace QuiPay.DbModels
         [Key]
         public int ID { get; set; }
 
-        public PaymentState TransactionState { get; set; }
+        public PaymentState PaymentState { get; set; }
 
         public int FromAccountID { get; set; }
 

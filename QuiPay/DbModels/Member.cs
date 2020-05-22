@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace QuiPay.DbModels
 {
+    public enum MemberState
+    {
+        Pending, Active, Suspicious, Suspended
+    };
+
     public class Member
     {
         [Key]
         public int ID { get; set; }
 
-        public State State { get; set; }
+        public MemberState MemberState { get; set; }
+
+        public DateTime WhenCreated { get; set; }
 
         public ICollection<Account> Accounts { get; set; }
 
