@@ -10,5 +10,9 @@ namespace QuiPay.DbModels
     {
         [Key]
         public int ID { get; set; }
+
+        public State State { get; set; }
+
+        public string Name { get; set; }
     }
 }

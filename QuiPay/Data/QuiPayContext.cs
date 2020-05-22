@@ -24,6 +24,6 @@ namespace QuiPay.Data
 
         public DbSet<QuiPay.DbModels.MemberDetails> MemberDetails { get; set; }
 
-        public DbSet<QuiPay.DbModels.Transaction> Transaction { get; set; }
+        public DbSet<QuiPay.DbModels.Payment> Transaction { get; set; }
     }
 }

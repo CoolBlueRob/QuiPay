@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,5 +11,11 @@ namespace QuiPay.DbModels
     {
         [Key]
         public int ID { get; set; }
+
+        public State State { get; set; }
+
+        public int MemberID { get; set; }
+        
+        public virtual Member Member { get; set; }
     }
 }
