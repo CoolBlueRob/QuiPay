@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuiPay", "QuiPay\QuiPay.csproj", "{AAF8CAC0-8A6D-4604-9587-2C3B1144F8A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAF8CAC0-8A6D-4604-9587-2C3B1144F8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF8CAC0-8A6D-4604-9587-2C3B1144F8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF8CAC0-8A6D-4604-9587-2C3B1144F8A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF8CAC0-8A6D-4604-9587-2C3B1144F8A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5AE122E0-5008-495C-BE69-FB56CA7F5D34}
+	EndGlobalSection
+EndGlobal
