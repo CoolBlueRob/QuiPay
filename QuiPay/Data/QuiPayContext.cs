@@ -22,8 +22,14 @@ namespace QuiPay.Data
 
         public DbSet<QuiPay.DbModels.Member> Member { get; set; }
 
-        public DbSet<QuiPay.DbModels.MemberDetails> MemberDetails { get; set; }
+        public DbSet<QuiPay.DbModels.MemberDetail> MemberDetail { get; set; }
 
-        public DbSet<QuiPay.DbModels.Payment> Transaction { get; set; }
+        public DbSet<QuiPay.DbModels.Payment> Payment { get; set; }
+
+        public DbSet<QuiPay.DbModels.Voucher> Voucher { get; set; }
+
+        public DbSet<QuiPay.DbModels.MemberTrust> MemberTrust { get; set; }
+
+        public DbSet<QuiPay.DbModels.VoucherAccountLut> VoucherAccountLut { get; set; }
     }
 }

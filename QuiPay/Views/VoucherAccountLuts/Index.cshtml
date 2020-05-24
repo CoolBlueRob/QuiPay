@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuiPay.DbModels.Currency>
+﻿@model IEnumerable<QuiPay.DbModels.VoucherAccountLut>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CurrencyState)
+                @Html.DisplayNameFor(model => model.BankNoteAccountLutState)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.BankNote)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WhenCreated)
+                @Html.DisplayNameFor(model => model.Account)
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CurrencyState)
+                @Html.DisplayFor(modelItem => item.BankNoteAccountLutState)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.BankNote.ID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WhenCreated)
+                @Html.DisplayFor(modelItem => item.Account.ID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

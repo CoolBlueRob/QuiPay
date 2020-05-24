@@ -54,7 +54,7 @@ namespace QuiPay.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Currency currency)
+        public async Task<IActionResult> Create([Bind("ID,CurrencyState,Name,WhenCreated")] Currency currency)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace QuiPay.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Currency currency)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CurrencyState,Name,WhenCreated")] Currency currency)
         {
             if (id != currency.ID)
             {

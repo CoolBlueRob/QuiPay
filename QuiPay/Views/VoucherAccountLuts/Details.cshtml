@@ -1,4 +1,4 @@
-﻿@model QuiPay.DbModels.Currency
+﻿@model QuiPay.DbModels.VoucherAccountLut
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Currency</h4>
+    <h4>VoucherAccountLut</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CurrencyState)
+            @Html.DisplayNameFor(model => model.BankNoteAccountLutState)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CurrencyState)
+            @Html.DisplayFor(model => model.BankNoteAccountLutState)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.BankNote)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.BankNote.ID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WhenCreated)
+            @Html.DisplayNameFor(model => model.Account)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WhenCreated)
+            @Html.DisplayFor(model => model.Account.ID)
         </dd>
     </dl>
 </div>

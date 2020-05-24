@@ -22,7 +22,8 @@ namespace QuiPay.Controllers
         // GET: Accounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Account.ToListAsync());
+            var quiPayContext = _context.Account.Include(a => a.Balance);
+            return View(await quiPayContext.ToListAsync());
         }
 
         // GET: Accounts/Details/5
@@ -34,6 +35,7 @@ namespace QuiPay.Controllers
             }
 
             var account = await _context.Account
+                .Include(a => a.Balance)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (account == null)
             {
@@ -46,6 +48,7 @@ namespace QuiPay.Controllers
         // GET: Accounts/Create
         public IActionResult Create()
         {
+            ViewData["CurrencyID"] = new SelectList(_context.Currency, "ID", "ID");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace QuiPay.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Account account)
+        public async Task<IActionResult> Create([Bind("ID,AccountState,MemberID,CurrencyID,WhenCreated")] Account account)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace QuiPay.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CurrencyID"] = new SelectList(_context.Currency, "ID", "ID", account.CurrencyID);
             return View(account);
         }
 
@@ -78,6 +82,7 @@ namespace QuiPay.Controllers
             {
                 return NotFound();
             }
+            ViewData["CurrencyID"] = new SelectList(_context.Currency, "ID", "ID", account.CurrencyID);
             return View(account);
         }
 
@@ -86,7 +91,7 @@ namespace QuiPay.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,AccountState,MemberID,CurrencyID,WhenCreated")] Account account)
         {
             if (id != account.ID)
             {
@@ -113,6 +118,7 @@ namespace QuiPay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CurrencyID"] = new SelectList(_context.Currency, "ID", "ID", account.CurrencyID);
             return View(account);
         }
 
@@ -125,6 +131,7 @@ namespace QuiPay.Controllers
             }
 
             var account = await _context.Account
+                .Include(a => a.Balance)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (account == null)
             {

@@ -10,22 +10,22 @@ using QuiPay.DbModels;
 
 namespace QuiPay.Controllers
 {
-    public class MembersController : Controller
+    public class MemberTrustsController : Controller
     {
         private readonly QuiPayContext _context;
 
-        public MembersController(QuiPayContext context)
+        public MemberTrustsController(QuiPayContext context)
         {
             _context = context;
         }
 
-        // GET: Members
+        // GET: MemberTrusts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Member.ToListAsync());
+            return View(await _context.MemberTrust.ToListAsync());
         }
 
-        // GET: Members/Details/5
+        // GET: MemberTrusts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Member
+            var memberTrust = await _context.MemberTrust
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (member == null)
+            if (memberTrust == null)
             {
                 return NotFound();
             }
 
-            return View(member);
+            return View(memberTrust);
         }
 
-        // GET: Members/Create
+        // GET: MemberTrusts/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Members/Create
+        // POST: MemberTrusts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,MemberState,WhenCreated")] Member member)
+        public async Task<IActionResult> Create([Bind("ID")] MemberTrust memberTrust)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(member);
+                _context.Add(memberTrust);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(member);
+            return View(memberTrust);
         }
 
-        // GET: Members/Edit/5
+        // GET: MemberTrusts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Member.FindAsync(id);
-            if (member == null)
+            var memberTrust = await _context.MemberTrust.FindAsync(id);
+            if (memberTrust == null)
             {
                 return NotFound();
             }
-            return View(member);
+            return View(memberTrust);
         }
 
-        // POST: Members/Edit/5
+        // POST: MemberTrusts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,MemberState,WhenCreated")] Member member)
+        public async Task<IActionResult> Edit(int id, [Bind("ID")] MemberTrust memberTrust)
         {
-            if (id != member.ID)
+            if (id != memberTrust.ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace QuiPay.Controllers
             {
                 try
                 {
-                    _context.Update(member);
+                    _context.Update(memberTrust);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MemberExists(member.ID))
+                    if (!MemberTrustExists(memberTrust.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace QuiPay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(member);
+            return View(memberTrust);
         }
 
-        // GET: Members/Delete/5
+        // GET: MemberTrusts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Member
+            var memberTrust = await _context.MemberTrust
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (member == null)
+            if (memberTrust == null)
             {
                 return NotFound();
             }
 
-            return View(member);
+            return View(memberTrust);
         }
 
-        // POST: Members/Delete/5
+        // POST: MemberTrusts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var member = await _context.Member.FindAsync(id);
-            _context.Member.Remove(member);
+            var memberTrust = await _context.MemberTrust.FindAsync(id);
+            _context.MemberTrust.Remove(memberTrust);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MemberExists(int id)
+        private bool MemberTrustExists(int id)
         {
-            return _context.Member.Any(e => e.ID == id);
+            return _context.MemberTrust.Any(e => e.ID == id);
         }
     }
 }

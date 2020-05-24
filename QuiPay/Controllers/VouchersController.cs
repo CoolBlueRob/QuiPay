@@ -10,22 +10,22 @@ using QuiPay.DbModels;
 
 namespace QuiPay.Controllers
 {
-    public class TransactionsController : Controller
+    public class VouchersController : Controller
     {
         private readonly QuiPayContext _context;
 
-        public TransactionsController(QuiPayContext context)
+        public VouchersController(QuiPayContext context)
         {
             _context = context;
         }
 
-        // GET: Transactions
+        // GET: Vouchers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Transaction.ToListAsync());
+            return View(await _context.Voucher.ToListAsync());
         }
 
-        // GET: Transactions/Details/5
+        // GET: Vouchers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction
+            var voucher = await _context.Voucher
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (transaction == null)
+            if (voucher == null)
             {
                 return NotFound();
             }
 
-            return View(transaction);
+            return View(voucher);
         }
 
-        // GET: Transactions/Create
+        // GET: Vouchers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Transactions/Create
+        // POST: Vouchers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Payment transaction)
+        public async Task<IActionResult> Create([Bind("ID,BankNoteState,Printed")] Voucher voucher)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(transaction);
+                _context.Add(voucher);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(transaction);
+            return View(voucher);
         }
 
-        // GET: Transactions/Edit/5
+        // GET: Vouchers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction.FindAsync(id);
-            if (transaction == null)
+            var voucher = await _context.Voucher.FindAsync(id);
+            if (voucher == null)
             {
                 return NotFound();
             }
-            return View(transaction);
+            return View(voucher);
         }
 
-        // POST: Transactions/Edit/5
+        // POST: Vouchers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Payment transaction)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,BankNoteState,Printed")] Voucher voucher)
         {
-            if (id != transaction.ID)
+            if (id != voucher.ID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace QuiPay.Controllers
             {
                 try
                 {
-                    _context.Update(transaction);
+                    _context.Update(voucher);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TransactionExists(transaction.ID))
+                    if (!VoucherExists(voucher.ID))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace QuiPay.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(transaction);
+            return View(voucher);
         }
 
-        // GET: Transactions/Delete/5
+        // GET: Vouchers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace QuiPay.Controllers
                 return NotFound();
             }
 
-            var transaction = await _context.Transaction
+            var voucher = await _context.Voucher
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (transaction == null)
+            if (voucher == null)
             {
                 return NotFound();
             }
 
-            return View(transaction);
+            return View(voucher);
         }
 
-        // POST: Transactions/Delete/5
+        // POST: Vouchers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var transaction = await _context.Transaction.FindAsync(id);
-            _context.Transaction.Remove(transaction);
+            var voucher = await _context.Voucher.FindAsync(id);
+            _context.Voucher.Remove(voucher);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TransactionExists(int id)
+        private bool VoucherExists(int id)
         {
-            return _context.Transaction.Any(e => e.ID == id);
+            return _context.Voucher.Any(e => e.ID == id);
         }
     }
 }

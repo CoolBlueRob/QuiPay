@@ -10,15 +10,17 @@ namespace QuiPay.DbModels
 {
     public enum MemberDetailsState
     {
-        Pending, Active, Suspicious, Suspended
+        Pending, Approved, Suspicious, Suspended
     };
 
-    public class MemberDetails
+    public class MemberDetail
     {
         [Key]
         public int ID { get; set; }
 
         public MemberDetailsState MemberDetailsState { get; set; }
+
+        public string Title { get; set; }
 
         public string FirstName { get; set; }
 
@@ -38,8 +40,12 @@ namespace QuiPay.DbModels
 
         public DateTime WhenCreated { get; set; }
 
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
         public int MemberID { get; set; }
-  
+
         public virtual Member Member { get; set; }
     }
 }

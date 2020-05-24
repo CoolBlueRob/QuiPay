@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuiPay.DbModels
+namespace QuiPay.ViewModels
 {
     public enum BankNoteAccountLutState
     {
@@ -13,7 +12,6 @@ namespace QuiPay.DbModels
 
     public class BankNoteAccountLut
     {
-        [Key]
         public int ID { get; set; }
 
         public BankNoteAccountLutState BankNoteAccountLutState { get; set; }
@@ -22,9 +20,9 @@ namespace QuiPay.DbModels
 
         public int AccountID { get; set; }
 
-        public virtual BankNote {get; set;}
+        public virtual BankNote BankNote { get; set;}
 
-        public virtual Account {get; set;}
+        public virtual Account Account { get; set;}
     }
 }
     
